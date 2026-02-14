@@ -1,29 +1,62 @@
-package com.example.code;
+package com.example.listycity;
 
-public class City {
-    private String name;
+/**
+ * This is a class that defines a City.
+ */
+public class City implements Comparable<City> {
+
+    /**
+     * The name of the city
+     */
+    private String city;
+
+    /**
+     * The province of the city
+     */
     private String province;
 
-    public City(String name, String province) {
-        this.name = name;
+    /**
+     * Constructor for City
+     * @param city Name of the city
+     * @param province Name of the province
+     */
+    public City(String city, String province){
+        this.city = city;
         this.province = province;
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Gets the city name
+     * @return city name
+     */
+    public String getCityName(){
+        return this.city;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * Gets the province name
+     * @return province name
+     */
+    public String getProvinceName(){
+        return this.province;
     }
 
-    public String getProvince() {
-        return province;
+    @Override
+    public int compareTo(City other) {
+        return this.city.compareTo(other.getCityName());
     }
 
-    public void setProvince(String province) {
-        this.province = province;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+        City city = (City) o;
+        return this.city.equals(city.city) &&
+                this.province.equals(city.province);
     }
 
+    @Override
+    public int hashCode() {
+        return city.hashCode() + province.hashCode();
+    }
 }
-
